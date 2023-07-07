@@ -1,9 +1,11 @@
 import AddService from "./components/AddService/AddService.jsx";
+import OneService from "./components/OneService/OneService.jsx";
 
 function App() {
   return (
     <div >
-      <AddService/>
+      {/* <AddService/> */}
+      <OneService/>
     </div>
   );
 }
