@@ -1,19 +1,19 @@
 import React from 'react'
 import './OneService.css'
-function OneService() {
+function OneService({el}) {
   return (
     <div>
         <ul>
     <li className="card">
      
-            <img className="img" src='https://res.cloudinary.com/dgu7vsmfd/image/upload/v1544375649/NGA_Screenshot_510x365.jpg' />
+            <img className="img" src={el.logo} />
 
         <div className="card-body">
            
                 <div href="utilidata-national-governors-association-meeting">
-                    <span className="pre-heading">Blog</span>
+                    <span className="pre-heading">{el.category}</span>
                     <div className="title">
-                        <h3>Test this responsively to see the horizontal magik</h3>
+                        <h3> this is the description about the company{el.description}</h3>
                     </div>
                     <p className="meta">
                         <span className="author">Utilidata</span>
@@ -22,9 +22,8 @@ function OneService() {
                 </div>
     
             <div className="chips">
-                <button className="chip">Government</button>
-                <button className="chip">Test</button>
-                <button className="chip">Utilidata</button>
+                <button className="chip">Delete</button>
+                <button className="chip">Update</button>
             </div>
         </div>
     </li>
