@@ -1,12 +1,8 @@
 import React from 'react'
 import './OneService.css'
 import axios from 'axios';
-function OneService({el,deleteOne}) {
-    const getOne = (id) => {
-        axios.get(`http://localhost:3004/api/services/${id}`)
-        .then(() =>console.log(id))
-        .catch((err) => console.log(err));
-    };
+function OneService({el,deleteOne,getOne}) {
+   
   return (
     <div>
         <ul>
