@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import AddService from "./components/AddService/AddService.jsx";
 import AllServices from "./components/AllServices/AllServices.jsx";
 import damyy from './damyy.js'
-import UpdateService from "./components/UpdateService/UpdateService.jsx";
+import axios from "axios";
 function App() {
   const [data,setData]=useState([])
   useEffect(()=>{
-    setData(damyy)
-    console.log(data)
+    axios.get("http://localhost:3004/api/services")
+    .then((res)=>setData(res.data))
+    .catch(err=>console.log(err))
   },[])
   return (
     <div >
-      {/* <AddService/> */}
+      <AddService/>
       <AllServices data={data}/>
-      <UpdateService/>
+
     </div>
   );
 }

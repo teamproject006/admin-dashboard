@@ -2,6 +2,7 @@ import React from 'react'
 import OneService from '../OneService/OneService'
 
 function AllServices({data}) {
+    
   return (
     <div>
       {data.map((e)=>(

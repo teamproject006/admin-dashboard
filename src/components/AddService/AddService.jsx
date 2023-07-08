@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import axios from "axios";
 import "./AddService.css";
 function AddService() {
     const [imgFile,setImgFile]=useState("")
     const [logoFile,setLogoFile]=useState('')
-    const [imgUrl,setImgUrl]=useState('https://t4.ftcdn.net/jpg/05/97/47/95/240_F_597479556_7bbQ7t4Z8k3xbAloHFHVdZIizWK1PdOo.jpg')
-    const [logoUrl,setLogoUrl]=useState('https://t4.ftcdn.net/jpg/05/97/47/95/240_F_597479556_7bbQ7t4Z8k3xbAloHFHVdZIizWK1PdOo.jpg')
+    const [imgUrl,setImgUrl]=useState([])
+    const [logoUrl,setLogoUrl]=useState('')
     const [category,setCategory]=useState('')
     const [companyName,setCompanyName]=useState('')
     const [description,setDescription]=useState('')
     const [costPerDay,setCostPerDay]=useState('')
     const [address,setAddress]=useState('')
-    const [createdAt,setCreatedAt]=useState('')
-    const [updatedAt,setUpdatedAt]=useState('')
-    useEffect(()=>{
-        uploadImage()
-        uploadLogo()
-    },[imgFile&& logoFile])
+    const [email,setEmail]=useState('')
+
     
     const model={
         category:category,
@@ -26,23 +22,21 @@ function AddService() {
         logo:logoUrl,
         images:imgUrl,
         address:address,
-        createdAt:createdAt,
-        updatedAt:updatedAt
+        email:email
     }
-     const addService= async ()=>{
-        axios.post("the API",model)
-        .then((res)=>console.log(res))
-        .catch((err)=>console.log(err))
+     const addSer= async ()=>{
+        axios.post("http://localhost:3004/api/services",model)
+        .then(()=>alert("done"))
+        .catch((err)=>console.log("ther is erreur",err))
      }
     const uploadImage =async () => {
+      console.log("object")
         const form = new FormData();
         form.append("file", imgFile);
         form.append("upload_preset", "farescloud");
-        console.log(form)
         await axios.post("https://api.cloudinary.com/v1_1/dt7t7wjql/upload", form).then((res) => {
-          console.log(res.data.secure_url)
-         setImgUrl(res.data.secure_url)
-         
+          setImgUrl(old=> [old+' '+res.data.secure_url])
+          console.log(imgUrl)
         })
         .catch((err)=>{console.log(err)})
       };
@@ -51,11 +45,9 @@ function AddService() {
         const form = new FormData();
         form.append("file", logoFile);
         form.append("upload_preset", "farescloud");
-        console.log(form)
         await axios.post("https://api.cloudinary.com/v1_1/dt7t7wjql/upload", form).then((res) => {
-          console.log(res.data.secure_url)
          setLogoUrl(res.data.secure_url)
-         
+         console.log(res.data.secure_url)
         })
         .catch((err)=>{console.log(err)})
       };
@@ -126,6 +118,7 @@ function AddService() {
                   className="formbold-form-input"
                   onChange={e=>{setLogoFile(e.target.files[0])}}
                 />
+                <button onClick={()=>uploadLogo()} >Add the logo</button>
               </div>
               <div>
                 <label  className="formbold-form-label">
@@ -137,6 +130,7 @@ function AddService() {
                   className="formbold-form-input"
                   onChange={e=>{setImgFile(e.target.files[0])}}
                 />
+                <button onClick={()=>uploadImage()} >Add image</button>
               </div>
             </div>
 
@@ -155,31 +149,23 @@ function AddService() {
               <div>
                 <label className="formbold-form-label">
                   {" "}
-                  Areated At*{" "}
+                  Email*{" "}
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className="formbold-form-input"
+                  onChange={e=>setEmail(e.target.value)}value={email}
                 />
               </div>
             </div>
 
-            <div>
-              <label  className="formbold-form-label">
-                {" "}
-                Updated At*{" "}
-              </label>
-              <input
-                type="text"
-                className="formbold-form-input"
-              />
-            </div>
+           
 
             <p className="formbold-policy">
               By filling out this form and clicking submit, you acknowledge our
             </p>
             <button className="formbold-btn" 
-            onClick={()=>addService()}>Submit Event Registration</button>
+            onClick={()=>addSer()}>Submit Event Registration</button>
           </div>
         </div>
       </div>
@@ -187,6 +173,7 @@ function AddService() {
       <img src={logoUrl} alt=""/>
       <label>Image about the service of the company</label>
       <img src={imgUrl} alt=""/>
+
     </div>
   );
 }
