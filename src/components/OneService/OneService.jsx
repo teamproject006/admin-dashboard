@@ -1,38 +1,38 @@
-import React from "react";
-import "./OneService.css";
-function OneService({ el }) {
+import React from 'react'
+import './OneService.css'
+import axios from 'axios';
+function OneService({el,deleteOne,getOne}) {
+   
   return (
     <div>
-      <ul>
+        <ul>
     <li className="card">
-        <div  className="featured-image" >
-        <img id="imag"  src={el.logo} alt="logo"/>
-        </div>
+     
+            <img className="img" src={el.logo} />
+
         <div className="card-body">
-            <header>
+           
                 <div href="utilidata-national-governors-association-meeting">
                     <span className="pre-heading">{el.category}</span>
-                    <div >
-                        <h3>this is the description{el.description}</h3>
+                    <div className="title">
+                        <h3> this is the description about the company :{el.description}</h3>
                     </div>
                     <p className="meta">
                         <span className="author">Utilidata</span>
-                        <span>|</span>
-                        <time className="updated" dateTime="" itemProp="datePublished">July 27, 2017</time>
+                        <span> | </span>
                     </p>
                 </div>
-            </header>
+    
             <div className="chips">
-                <button className="chip">Show</button>
-                <button className="chip">Update</button>
-                <button className="chip">Delete</button>
+                <button className="chip" onClick={()=>deleteOne(el.id)}>Delete</button>
+                <button className="chip" onClick={()=>getOne(el.id)}>Update</button>
             </div>
         </div>
     </li>
         
-    </ul>
+    </ul> 
     </div>
-  );
+  )
 }
 
-export default OneService;
+export default OneService

@@ -22,6 +22,9 @@ body {
 }
 
 
+
+
+
 .formbold-form-title {
   color: #07074d;
   font-weight: 600;
@@ -64,8 +67,17 @@ body {
   margin-bottom: 10px;
 }
 
-
-.btn {
+.formbold-policy {
+  font-size: 14px;
+  line-height: 24px;
+  color: #536387;
+  width: 70%;
+  margin-top: 22px;
+}
+.formbold-policy a {
+  color: #6a64f1;
+}
+.formbold-btn {
   text-align: center;
   width: 100%;
   font-size: 16px;
@@ -78,6 +90,6 @@ body {
   cursor: pointer;
   margin-top: 25px;
 }
-.btn:hover {
+.formbold-btn:hover {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
 }
