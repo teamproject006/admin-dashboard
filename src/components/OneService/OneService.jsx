@@ -1,6 +1,12 @@
 import React from 'react'
 import './OneService.css'
-function OneService({el}) {
+import axios from 'axios';
+function OneService({el,deleteOne}) {
+    const getOne = (id) => {
+        axios.get(`http://localhost:3004/api/services/${id}`)
+        .then(() =>console.log(id))
+        .catch((err) => console.log(err));
+    };
   return (
     <div>
         <ul>
@@ -22,8 +28,8 @@ function OneService({el}) {
                 </div>
     
             <div className="chips">
-                <button className="chip">Delete</button>
-                <button className="chip">Update</button>
+                <button className="chip" onClick={()=>deleteOne(el.id)}>Delete</button>
+                <button className="chip" onClick={()=>getOne(el.id)}>Update</button>
             </div>
         </div>
     </li>

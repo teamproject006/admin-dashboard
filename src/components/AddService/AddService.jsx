@@ -35,7 +35,7 @@ function AddService() {
         form.append("file", imgFile);
         form.append("upload_preset", "farescloud");
         await axios.post("https://api.cloudinary.com/v1_1/dt7t7wjql/upload", form).then((res) => {
-          setImgUrl(old=> [old+' '+res.data.secure_url])
+          setImgUrl(old=>[ ...old,res.data.secure_url])
           console.log(imgUrl)
         })
         .catch((err)=>{console.log(err)})
