@@ -3,6 +3,8 @@ import AddService from "./components/AddService/AddService.jsx";
 import AllServices from "./components/AllServices/AllServices.jsx";
 
 import axios from "axios";
+import UpdateService from "./components/UpdateService/UpdateService.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const [data,setData]=useState([])
   const [oneData,setOneData]=useState([])
@@ -21,15 +23,20 @@ function App() {
 };
 const getOne = (id) => {
   axios.get(`http://localhost:3004/api/services/${id}`)
-  .then((res) =>setOneData(res.data))
+  .then((res) =>setOneData([res.data]))
   .catch((err) => console.log(err));
 };
 
   return (
     <div >
-      <AddService/>
-      <AllServices data={data} deleteOne={deleteOne} getOne={getOne} />
-      {console.log(oneData)}
+      <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<AllServices data={data} deleteOne={deleteOne} getOne={getOne} oneData={oneData} setRefresh={setRefresh} refresh={refresh} />} /> 
+       <Route path="/add" element={<AddService/>} /> 
+      <Route path="/update" element={<UpdateService oneData={oneData}/>}/> 
+
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

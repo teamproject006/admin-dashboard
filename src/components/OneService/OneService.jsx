@@ -1,14 +1,13 @@
 import React from 'react'
 import './OneService.css'
-import axios from 'axios';
-function OneService({el,deleteOne,getOne}) {
-   
+import { Link } from 'react-router-dom'
+function OneService({el,deleteOne,getOne,refresh,setRefresh}) {
   return (
     <div>
         <ul>
     <li className="card">
      
-            <img className="img" src={el.logo} />
+            <img className="img" src={el.logo} alt='' />
 
         <div className="card-body">
            
@@ -25,7 +24,7 @@ function OneService({el,deleteOne,getOne}) {
     
             <div className="chips">
                 <button className="chip" onClick={()=>deleteOne(el.id)}>Delete</button>
-                <button className="chip" onClick={()=>getOne(el.id)}>Update</button>
+               <Link to={"update"} ><button className="chip" onClick={()=>getOne(el.id)}>Update</button></Link> 
             </div>
         </div>
     </li>
