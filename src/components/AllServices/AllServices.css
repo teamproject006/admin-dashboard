@@ -1,0 +1,12 @@
+.all{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.all.scroll {
+    margin:4px;
+    padding:4px;
+    height: 50%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
+}
