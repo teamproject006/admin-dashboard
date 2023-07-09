@@ -1,7 +1,8 @@
 import React from 'react'
 import './OneService.css'
 import { Link } from 'react-router-dom'
-function OneService({el,deleteOne,getOne,refresh,setRefresh}) {
+function OneService({el,deleteOne,getOne}) {
+    
   return (
     <div>
         <ul>
@@ -24,7 +25,12 @@ function OneService({el,deleteOne,getOne,refresh,setRefresh}) {
     
             <div className="chips">
                 <button className="chip" onClick={()=>deleteOne(el.id)}>Delete</button>
-               <Link to={"update"} ><button className="chip" onClick={()=>getOne(el.id)}>Update</button></Link> 
+                <Link to={"update"}>
+                <button className="chip" onMouseOver={() => { getOne(el.id) }}>
+                    Update
+                </button>
+                </Link>
+
             </div>
         </div>
     </li>

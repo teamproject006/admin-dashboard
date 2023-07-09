@@ -25,7 +25,8 @@ function App() {
 };
 const getOne = (id) => {
   axios.get(`http://localhost:3004/api/services/${id}`)
-  .then((res) =>setOneData([res.data]))
+  .then((res) =>
+  setOneData([res.data]))
   .catch((err) => console.log(err));
 };
 
@@ -34,12 +35,12 @@ const getOne = (id) => {
       <BrowserRouter>
       <div className="dashboard">
     {/* **********start the parant div************/}
-<div class="parent">
+<div className="parent">
 
     {/* **********start the div1************/}
-<div class="div1">
+<div className="div1">
     <div className="card1">
-<img className="logo" src ="https://res.cloudinary.com/dt7t7wjql/image/upload/v1688807217/kxf6sgh9fbs1hcfbklte.png"/>
+<img className="logo" src ="https://res.cloudinary.com/dt7t7wjql/image/upload/v1688807217/kxf6sgh9fbs1hcfbklte.png" alt=""/>
 <Link to={"/add"} > <button className="button">
 Add new service
 <div className="hoverEffect">
@@ -58,7 +59,7 @@ All Services<div className="hoverEffect">
     {/* **********end the div1************/}
     {/* **********start the div2************/}
 
-<div class="div2">
+<div className="div2">
 <div className="body1">
 <div className="InputContainer">
   <input placeholder="Search.." className="input" type="text"/>
@@ -68,7 +69,7 @@ All Services<div className="hoverEffect">
      </div>
     {/* **********end the div2************/}
       {/*************the star of the div3 ***************** */}
-<div class="div3">
+<div className="div3">
       <Routes>
       <Route path="/" element={<AllServices data={data} deleteOne={deleteOne} getOne={getOne} oneData={oneData} setRefresh={setRefresh} refresh={refresh} />} /> 
        <Route path="/add" element={<AddService/>} /> 

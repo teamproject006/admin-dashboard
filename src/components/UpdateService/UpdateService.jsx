@@ -2,9 +2,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 
 function UpdateService({oneData}) {
-  const [imgFile,setImgFile]=useState("")
+  // const [imgFile,setImgFile]=useState("")
   const [logoFile,setLogoFile]=useState('')
-  const [imgUrl,setImgUrl]=useState(oneData[0].images)
   const [logoUrl,setLogoUrl]=useState(oneData[0].logo)
   const [category,setCategory]=useState(oneData[0].category)
   const [companyName,setCompanyName]=useState(oneData[0].companyName)
@@ -12,7 +11,7 @@ function UpdateService({oneData}) {
   const [costPerDay,setCostPerDay]=useState(oneData[0].costPerDay)
   const [address,setAddress]=useState(oneData[0].address)
   const [email,setEmail]=useState(oneData[0].email)
-console.log(oneData[0])
+console.log("hi",oneData[0].images)
   
   const model={
       category:category,
@@ -20,26 +19,26 @@ console.log(oneData[0])
       description:description,
       costPerDay:costPerDay,
       logo:logoUrl,
-      images:imgUrl,
+
       address:address,
       email:email
   }
-   const updateOne= async ()=>{
-      axios.put("http://localhost:3004/api/services",model)
+   const updateOne= async (id)=>{
+      axios.put(`http://localhost:3004/api/services/${id}`,model)
       .then(()=>alert("done"))
       .catch((err)=>console.log("ther is erreur",err))
    }
-  const uploadImage =async () => {
-    console.log("object")
-      const form = new FormData();
-      form.append("file", imgFile);
-      form.append("upload_preset", "farescloud");
-      await axios.post("https://api.cloudinary.com/v1_1/dt7t7wjql/upload", form).then((res) => {
-        setImgUrl(old=>[ ...old,res.data.secure_url])
-        console.log(imgUrl)
-      })
-      .catch((err)=>{console.log(err)})
-    };
+  // const uploadImage =async () => {
+  //   console.log("object")
+  //     const form = new FormData();
+  //     form.append("file", imgFile);
+  //     form.append("upload_preset", "farescloud");
+  //     await axios.post("https://api.cloudinary.com/v1_1/dt7t7wjql/upload", form).then((res) => {
+  //       setImgUrl(old=>[ ...old,res.data.secure_url])
+  //       console.log(imgUrl)
+  //     })
+  //     .catch((err)=>{console.log(err)})
+  //   };
 
   const uploadLogo =async () => {
       const form = new FormData();
@@ -128,9 +127,9 @@ return (
               <input
                 type="file"
                 className="formbold-form-input"
-                onChange={e=>{setImgFile(e.target.files[0])}}
+              
               />
-              <button onClick={()=>uploadImage()} >Add image</button>
+              <button onClick={()=>alert(`you can't update the images`)} >Add image</button>
             </div>
           </div>
 
@@ -165,7 +164,7 @@ return (
             By filling out this form and clicking submit, you acknowledge our
           </p>
           <button className="formbold-btn" 
-          onClick={()=>updateOne()}>Update</button>
+          onClick={()=>updateOne(oneData[0].id)}>Update</button>
         </div>
       </div>
     </div>
