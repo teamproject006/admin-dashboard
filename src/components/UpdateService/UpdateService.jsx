@@ -24,7 +24,7 @@ console.log(oneData[0])
       address:address,
       email:email
   }
-   const addSer= async ()=>{
+   const updateOne= async ()=>{
       axios.put("http://localhost:3004/api/services",model)
       .then(()=>alert("done"))
       .catch((err)=>console.log("ther is erreur",err))
@@ -165,7 +165,7 @@ return (
             By filling out this form and clicking submit, you acknowledge our
           </p>
           <button className="formbold-btn" 
-          onClick={()=>addSer()}>Update</button>
+          onClick={()=>updateOne()}>Update</button>
         </div>
       </div>
     </div>

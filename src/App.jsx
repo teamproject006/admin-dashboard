@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import AddService from "./components/AddService/AddService.jsx";
 import AllServices from "./components/AllServices/AllServices.jsx";
-
+import './components/Dashboard/Dashboard.css'
 import axios from "axios";
 import UpdateService from "./components/UpdateService/UpdateService.jsx";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Rentals from "./components/Rentals/Rentals.jsx";
+import './App.css'
 function App() {
   const [data,setData]=useState([])
   const [oneData,setOneData]=useState([])
@@ -28,14 +30,60 @@ const getOne = (id) => {
 };
 
   return (
-    <div >
+    <div className="app" >
       <BrowserRouter>
+      <div className="dashboard">
+    {/* **********start the parant div************/}
+<div class="parent">
+
+    {/* **********start the div1************/}
+<div class="div1">
+    <div className="card1">
+<img className="logo" src ="https://res.cloudinary.com/dt7t7wjql/image/upload/v1688807217/kxf6sgh9fbs1hcfbklte.png"/>
+<Link to={"/add"} > <button className="button">
+Add new service
+<div className="hoverEffect">
+<div>
+</div>
+</div>
+</button> </Link>
+<Link to={"/"} > <button className="button">
+All Services<div className="hoverEffect">
+<div>
+</div>
+</div>
+</button> </Link>
+      </div> 
+</div>
+    {/* **********end the div1************/}
+    {/* **********start the div2************/}
+
+<div class="div2">
+<div className="body1">
+<div className="InputContainer">
+  <input placeholder="Search.." className="input" type="text"/>
+</div>
+
+</div>
+     </div>
+    {/* **********end the div2************/}
+      {/*************the star of the div3 ***************** */}
+<div class="div3">
       <Routes>
       <Route path="/" element={<AllServices data={data} deleteOne={deleteOne} getOne={getOne} oneData={oneData} setRefresh={setRefresh} refresh={refresh} />} /> 
        <Route path="/add" element={<AddService/>} /> 
       <Route path="/update" element={<UpdateService oneData={oneData}/>}/> 
+      <Route path="/rent" element={<Rentals />}/> 
 
       </Routes>
+
+     </div>
+      {/*************the end of the div3 ***************** */}
+  
+</div>
+{/* the end of div paeant*/}
+</div>
+
       </BrowserRouter>
     </div>
   );
