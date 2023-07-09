@@ -172,7 +172,7 @@ function AddService() {
       <label >The logo of the company</label>
       <img src={logoUrl} alt=""/>
       <label>Image about the service of the company</label>
-      <img src={imgUrl} alt=""/>
+      <img src={imgUrl[0]} alt=""/>
 
     </div>
   );
