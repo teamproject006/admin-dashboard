@@ -11,6 +11,7 @@ function App() {
   const [data,setData]=useState([])
   const [oneData,setOneData]=useState([])
   const [refresh,setRefresh]=useState(false)
+  const [serch,setSerch]=useState("")
   useEffect(()=>{
     axios.get("http://localhost:3004/api/services")
     .then((res)=>setData(res.data))
@@ -29,7 +30,13 @@ const getOne = (id) => {
   setOneData([res.data]))
   .catch((err) => console.log(err));
 };
-
+const filtered = (input) => { 
+  const  fil=data.filter((e) => {return e.category===input})
+  console.log("hi",fil)
+  setData(fil)
+ 
+} 
+   
   return (
     <div className="app" >
       <BrowserRouter>
@@ -53,6 +60,12 @@ All Services<div className="hoverEffect">
 <div>
 </div>
 </div>
+</button> </Link><br />
+<Link to={"/rent"} > <button className="button">
+Rentels<div className="hoverEffect">
+<div>
+</div>
+</div>
 </button> </Link>
       </div> 
 </div>
@@ -62,7 +75,8 @@ All Services<div className="hoverEffect">
 <div className="div2">
 <div className="body1">
 <div className="InputContainer">
-  <input placeholder="Search.." className="input" type="text"/>
+  <input placeholder="Search.." className="input" type="text" onChange={(e)=>{setSerch(e.target.value)}} value={serch}/>
+  <button className="serch" onClick={()=>filtered(serch)}>serch</button>
 </div>
 
 </div>

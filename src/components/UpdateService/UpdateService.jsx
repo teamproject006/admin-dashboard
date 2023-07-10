@@ -161,7 +161,7 @@ return (
          
 
           <p className="formbold-policy">
-            By filling out this form and clicking submit, you acknowledge our
+            By filling out this form and clicking Update.
           </p>
           <button className="formbold-btn" 
           onClick={()=>updateOne(oneData[0].id)}>Update</button>
