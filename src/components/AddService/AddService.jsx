@@ -162,17 +162,14 @@ function AddService() {
            
 
             <p className="formbold-policy">
-              By filling out this form and clicking submit, you acknowledge our
+              By filling out this form and clicking submit.
             </p>
             <button className="formbold-btn" 
             onClick={()=>addSer()}>Submit Event Registration</button>
           </div>
         </div>
       </div>
-      <label >The logo of the company</label>
-      <img src={logoUrl} alt=""/>
-      <label>Image about the service of the company</label>
-      <img src={imgUrl[0]} alt=""/>
+ 
 
     </div>
   );
