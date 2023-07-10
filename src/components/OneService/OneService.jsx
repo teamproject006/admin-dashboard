@@ -15,7 +15,7 @@ function OneService({el,deleteOne,getOne}) {
                 <div href="utilidata-national-governors-association-meeting">
                     <span className="pre-heading">{el.category}</span>
                     <div className="title">
-                        <h3> this is the description about the company :{el.description}</h3>
+                        <h3>{el.description}</h3>
                     </div>
                     <p className="meta">
                         <span className="author">Utilidata</span>

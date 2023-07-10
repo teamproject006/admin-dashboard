@@ -165,7 +165,7 @@ function AddService() {
               By filling out this form and clicking submit.
             </p>
             <button className="formbold-btn" 
-            onClick={()=>addSer()}>Submit Event Registration</button>
+            onClick={()=>addSer()}>Add new service</button>
           </div>
         </div>
       </div>
